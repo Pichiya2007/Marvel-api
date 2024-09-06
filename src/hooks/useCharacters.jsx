@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react"
 import { reqCharacters } from "../service/characters"
+import { MarvelApp } from "../components/MarvelApp"
 
-export const useCharacters = () => {
+export const useCharacters = (page) => {
 
-    const [characters, setCharacters] = useState()
+    const [characters, setCharacters] = useState([])
  
     useEffect(() => {
-        //Si si tiene dependencias, solo se ejecuta en la primera carga del componente
-        //Si no tiene dependencias, se ejecuta cada que la dependencia cambia
-        reqCharacters().then((data) => {
+        reqCharacters(page).then((data) => {
+            console.log("Fetched data:", data)
             setCharacters(data.results)
         })
-    }, [])
+    }, [page])
 
     //Retorno del Hook
     return {

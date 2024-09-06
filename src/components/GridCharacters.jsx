@@ -1,9 +1,7 @@
 import { useCharacters } from "../hooks/useCharacters"
 
-export const GridCharacters = () => {
+export const GridCharacters = ({characters}) => {
 
-  const {characters} = useCharacters()
- 
   return (
     <>
       <div className="d-flex flex-row row row-cols-6">
@@ -12,7 +10,7 @@ export const GridCharacters = () => {
             characters.map((char) => (
               <div key={char.id}>
                 <h3 className="text-center">{char.name}</h3>
-                <img style={{ width: "13rem"}} src={`${char.thumbnail.path}.${char.thumbnail.extension}`} alt="Image" />
+                <img style={{ width: "13rem"}} src={`${char.thumbnail.path}.${char.thumbnail.extension}`} alt={char.name} />
               </div>
             ))
         }
